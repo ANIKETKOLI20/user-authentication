@@ -3,8 +3,8 @@ import { signup,  login , logout } from '../controllers/auth.controller.js'
 
 const router = Router()
 
-router.use("/signup", signup)
-router.use("/login", login)
-router.use("/logout", logout)
+router.post("/signup", signup)
+router.post("/login", login)
+router.post("/logout", logout)
 
 export default router
