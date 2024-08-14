@@ -25,7 +25,6 @@ export const sendverificationEmail = async (email, verificationToken) => {
 	}
 };
 
-{/*
 
 export const sendWelcomeEmail = async (email, name) => {
 	const recipient = [{ email }];
@@ -34,7 +33,7 @@ export const sendWelcomeEmail = async (email, name) => {
 		const response = await mailtrapClient.send({
 			from: sender,
 			to: recipient,
-			template_uuid: "e65925d1-a9d1-4a40-ae7c-d92b37d593df",
+			template_uuid: "d1ff7dee-8b47-46d4-9234-0ff5716bd499",
 			template_variables: {
 				company_info_name: "Auth Company",
 				name: name,
@@ -86,4 +85,3 @@ export const sendResetSuccessEmail = async (email) => {
 		throw new Error(`Error sending password reset success email: ${error}`);
 	}
 };
-*/}
