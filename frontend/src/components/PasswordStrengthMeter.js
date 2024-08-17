@@ -73,4 +73,6 @@ const PasswordStrengthMeter = ({ password }) => {
 		</div>
 	);
 };
+
+
 export default PasswordStrengthMeter;

@@ -1,14 +1,17 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import { useAuthStore } from "../store/authStore";
+import toast from "react-hot-toast";
 
 
 const EmailVerificationPage = () => {
 
 	const [code, setCode] = useState(["", "", "", "", "", ""]);
-    const isLoading = false;
 	const inputRefs = useRef([]);
 	const navigate = useNavigate();
+
+    const { error, isLoading, verifyEmail } = useAuthStore();
 
     // It also handles pasting of the entire code, and moves focus accordingly.
 	const handleChange = (index, value) => {
@@ -48,8 +51,15 @@ const EmailVerificationPage = () => {
 
     // This function is triggered when the user submits the form or when all fields are filled.
 	const handleSubmit = async (e) => {
-		e.preventDefault();  // Prevent the default form submission.
-		alert("Submit");  // Replace this with actual submission logic.
+		e.preventDefault();  
+		const verificationCode = code.join("");
+		try {
+			await verifyEmail(verificationCode);
+			navigate("/");
+			toast.success("Email verified successfully");
+		} catch (error) {
+			console.log(error);
+		}
 	};
 
     // useEffect hook triggers the submission automatically when all fields are filled.
@@ -90,7 +100,7 @@ const EmailVerificationPage = () => {
 							/>
 						))}
 					</div>
-					
+					{error && <p className='text-red-500 font-semibold mt-2'>{error}</p>}
 					<motion.button
 						whileHover={{ scale: 1.05 }}  // Hover animation effect.
 						whileTap={{ scale: 0.95 }}  // Tap animation effect.
