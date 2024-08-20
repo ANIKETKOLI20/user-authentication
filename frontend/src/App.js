@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import FloatingShape from "./components/FloatingShape";
 import Home from "./pages/Home";
 import LoginPage from "./pages/LoginPage";
@@ -89,6 +89,8 @@ function App() {
             </RedirectAuthenticatedUser>
           }
         />
+        {/* catch all routes */}
+				<Route path='*' element={<Navigate to='/' replace />} />
       </Routes>
     </div>
   );
